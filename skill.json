@@ -1,0 +1,72 @@
+{
+  "name": "genpark-agentic-commerce-automated-dunning-card-updater-vault-skill",
+  "version": "1.0.0",
+  "title": "Subscription Dunning & Card Network Updater Re-Tokenization Skill",
+  "description": "Visa Account Updater (VAU) and Mastercard Automatic Billing Updater (ABU) re-tokenization router, decline code categorization, and involuntary churn recovery. Built for GenPark (https://www.genpark.ai).",
+  "homepage": "https://www.genpark.ai",
+  "linkedin": "https://www.linkedin.com/company/92955550",
+  "category": "agentic-commerce",
+  "topics": [
+    "account-updater",
+    "dunning",
+    "subscription-recovery",
+    "retokenization",
+    "agentic-commerce",
+    "model-context-protocol",
+    "genpark"
+  ],
+  "tools": [
+    {
+      "name": "process_card_network_account_updater",
+      "description": "Handle Visa/Mastercard Account Updater response to silently refresh expired card tokens without customer outreach.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "customer_id": {
+            "type": "string"
+          },
+          "old_card_token": {
+            "type": "string"
+          },
+          "vau_response_code": {
+            "type": "string",
+            "enum": [
+              "NEW_CARD_NUMBER",
+              "NEW_EXPIRY_DATE",
+              "ACCOUNT_CLOSED",
+              "NO_CHANGE"
+            ]
+          }
+        },
+        "required": [
+          "customer_id",
+          "old_card_token",
+          "vau_response_code"
+        ]
+      }
+    },
+    {
+      "name": "calculate_dunning_campaign_recovery_yield",
+      "description": "Calculate recovered ARR and reduction in involuntary churn across automated dunning retry cascades.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "total_failed_subscriptions": {
+            "type": "integer"
+          },
+          "recovered_subscriptions": {
+            "type": "integer"
+          },
+          "average_order_value_usd": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "total_failed_subscriptions",
+          "recovered_subscriptions",
+          "average_order_value_usd"
+        ]
+      }
+    }
+  ]
+}
